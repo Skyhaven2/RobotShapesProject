@@ -25,6 +25,14 @@ public class RobotController
 		}
 	}
 
+	private void classShapes()
+	{
+		myRobot.circle();
+		myRobot.square();
+		myRobot.makeShape(3);
+		myRobot.makeShape(6);
+		myRobot.makeShape(8);
+	}
 }
 //C is left
 //B is right
