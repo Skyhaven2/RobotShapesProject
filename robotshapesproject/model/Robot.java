@@ -56,4 +56,97 @@ public class Robot
 			numberOfTimes++;
 		}
 	}
+	
+	private void rotateByAngleLeft(int angle)
+	{
+		double delayPerDegree = (90.0 / 500.0);
+		int delayPerAngle = (int) (Math.round(angle / delayPerDegree));
+			Motor.B.forward();
+			Motor.C.backward();
+			Delay.msDelay(delayPerAngle);
+	}
+	
+	private void rotateByAngleRight(int angle)
+	{
+		double delayPerDegree = (90.0 / 500.0);
+		int delayPerAngle = (int) (Math.round(angle / delayPerDegree));
+			Motor.C.forward();
+			Motor.B.backward();
+			Delay.msDelay(delayPerAngle);
+	}
+	
+	public void writeCamron()
+	{
+		writeC();
+		writeA();
+		writeM();
+	}
+	private void writeC()
+	{
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(1000);
+		rotateByAngleLeft(45);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(1000);
+		rotateByAngleLeft(45);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(1000);
+		rotateByAngleLeft(45);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(1000);
+	}
+	private void writeA()
+	{
+		rotateByAngleLeft(45);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(2000);
+		rotateByAngleRight(90);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(1000);
+		rotateByAngleRight(135);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(1000);
+		rotateByAngleRight(180);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(1000);
+		rotateByAngleRight(45);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(1000);
+		rotateByAngleLeft(45);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(1000);
+	}
+	private void writeM()
+	{
+		rotateByAngleLeft(90);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(2000);
+		rotateByAngleRight(135);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(2828);
+		rotateByAngleLeft(90);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(2828);
+		rotateByAngleRight(135);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(2000);
+		rotateByAngleLeft(90);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(1000);
+	}
 }

@@ -19,11 +19,7 @@ public class RobotController
 	{
 		while(Button.waitForAnyPress() != Button.ID_ESCAPE)
 		{
-			myRobot.circle();
-			myRobot.square();
-			myRobot.makeShape(3);
-			myRobot.makeShape(6);
-			myRobot.makeShape(8);
+			myRobot.writeCamron();
 			Motor.C.stop();
 			Motor.B.stop();
 		}
