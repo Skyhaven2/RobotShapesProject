@@ -2,6 +2,9 @@ package robotshapesproject.controller;
 
 import lejos.nxt.Button;
 import lejos.nxt.Motor;
+import lejos.nxt.SensorPort;
+import lejos.nxt.SensorPortListener;
+import lejos.nxt.SoundSensor;
 import lejos.util.Delay;
 import robotshapesproject.model.Robot;
 
@@ -16,22 +19,21 @@ public class RobotController
 	}
 
 	public void start()
-	{
-		while(Button.waitForAnyPress() != Button.ID_ESCAPE)
+	{	
+		while(! Button.ESCAPE.isDown())
 		{
-			myRobot.writeCamron();
-			Motor.C.stop();
-			Motor.B.stop();
+			myRobot.driveAroundClassroomViaTouch();
 		}
 	}
-
-	private void classShapes()
+	
+	private void checkIfNeedToDance()
 	{
-		myRobot.circle();
-		myRobot.square();
-		myRobot.makeShape(3);
-		myRobot.makeShape(6);
-		myRobot.makeShape(8);
+		if(myRobot.mySoundSensor.readValue() > 40)
+		{
+			myRobot.robotDance();
+		}
+		Motor.C.stop();
+		Motor.B.stop();
 	}
 }
 //C is left

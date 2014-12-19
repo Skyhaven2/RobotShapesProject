@@ -1,18 +1,104 @@
 package robotshapesproject.model;
 
 import robotshapesproject.controller.RobotController;
+import lejos.nxt.LightSensor;
 import lejos.nxt.Motor;
+import lejos.nxt.SensorPort;
+import lejos.nxt.SoundSensor;
+import lejos.nxt.TouchSensor;
+import lejos.nxt.UltrasonicSensor;
 import lejos.util.Delay;
 
 public class Robot
 {
 	private RobotController basecontroller;
+	public UltrasonicSensor mySonar;
+	public TouchSensor myTouchSensor;
+	public LightSensor myLightSensor;
+	public SoundSensor mySoundSensor;
 
 	public Robot(RobotController basecontroller)
 	{
 		this.basecontroller = basecontroller;
+		
+	
+		myTouchSensor = new TouchSensor(SensorPort.S1);
+		mySoundSensor = new SoundSensor(SensorPort.S2);
+		myLightSensor = new LightSensor(SensorPort.S3);
+		mySonar = new UltrasonicSensor(SensorPort.S4);
+		
+		//microphone.readValue()
+		//.isPressd()
+		//.getDistance()
+		
 	}
 
+	public void driveAroundClassroomViaSonar()
+	{
+		if(mySonar.getDistance() < 30)
+		{
+			Motor.B.backward();
+			Motor.C.backward();
+			Delay.msDelay(500);
+			rotateByAngleRight(90);
+		}
+		else
+		{
+			Motor.B.forward();
+			Motor.C.forward();
+			Delay.msDelay(500);
+		}
+	}
+	
+	public void driveAroundClassroomViaTouch()
+	{
+		if(myTouchSensor.isPressed())
+		{
+			Motor.B.backward();
+			Motor.C.backward();
+			Delay.msDelay(500);
+			rotateByAngleRight(90);
+		}
+		else
+		{
+			Motor.B.forward();
+			Motor.C.forward();
+			Delay.msDelay(500);
+		}
+		//Finish this
+	}
+	
+	public void robotDance()
+	{
+		int numberOfTimes = 0;
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(1000);
+		Motor.B.backward();
+		Motor.C.backward();
+		Delay.msDelay(500);
+		circle();
+		while(numberOfTimes < 10)
+		{
+			Motor.B.forward();
+			Motor.C.forward();
+			Delay.msDelay(100);
+			Motor.B.backward();
+			Motor.C.backward();
+			Delay.msDelay(100);
+			numberOfTimes++;
+		}
+	}
+	
+	public void classShapes()
+	{
+		circle();
+		square();
+		makeShape(3);
+		makeShape(6);
+		makeShape(8);
+	}
+	
 	public void square()
 	{
 		int numberOfTimes = 0;
@@ -32,7 +118,7 @@ public class Robot
 	{
 		Motor.B.forward();
 		Motor.C.stop();
-		Delay.msDelay(3000);
+		Delay.msDelay(2000);
 	}
 	
 	/**
@@ -148,5 +234,25 @@ public class Robot
 		Motor.B.forward();
 		Motor.C.forward();
 		Delay.msDelay(1000);
+	}
+	private void writeR()
+	{
+		rotateByAngleLeft(90);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(2000);
+		rotateByAngleRight(135);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(1000);
+		rotateByAngleRight(45);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(1000);
+		rotateByAngleLeft(90);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(1000);
+		//Finish this
 	}
 }
