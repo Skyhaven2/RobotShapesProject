@@ -21,16 +21,10 @@ public class Robot
 	{
 		this.basecontroller = basecontroller;
 		
-	
 		myTouchSensor = new TouchSensor(SensorPort.S1);
 		mySoundSensor = new SoundSensor(SensorPort.S2);
 		myLightSensor = new LightSensor(SensorPort.S3);
 		mySonar = new UltrasonicSensor(SensorPort.S4);
-		
-		//microphone.readValue()
-		//.isPressd()
-		//.getDistance()
-		
 	}
 
 	public void driveAroundClassroomViaSonar()
@@ -56,7 +50,7 @@ public class Robot
 		{
 			Motor.B.backward();
 			Motor.C.backward();
-			Delay.msDelay(500);
+			Delay.msDelay(1000);
 			rotateByAngleRight(90);
 		}
 		else
@@ -65,7 +59,6 @@ public class Robot
 			Motor.C.forward();
 			Delay.msDelay(500);
 		}
-		//Finish this
 	}
 	
 	public void robotDance()
@@ -166,6 +159,9 @@ public class Robot
 		writeC();
 		writeA();
 		writeM();
+		writeR();
+		writeO();
+		writeN();
 	}
 	private void writeC()
 	{
@@ -253,6 +249,46 @@ public class Robot
 		Motor.B.forward();
 		Motor.C.forward();
 		Delay.msDelay(1000);
-		//Finish this
+		rotateByAngleLeft(45);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(1000);
+	}
+	private void writeO()
+	{
+		rotateByAngleLeft(90);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(2000);
+		rotateByAngleRight(90);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(1000);
+		rotateByAngleRight(90);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(2000);
+		rotateByAngleLeft(90);
+		Motor.B.backward();
+		Motor.C.backward();
+		Delay.msDelay(1000);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(2000);
+	}
+	private void writeN()
+	{
+		rotateByAngleLeft(90);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(2000);
+		rotateByAngleRight(135);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(2828);
+		rotateByAngleLeft(135);
+		Motor.B.forward();
+		Motor.C.forward();
+		Delay.msDelay(2000);
 	}
 }
